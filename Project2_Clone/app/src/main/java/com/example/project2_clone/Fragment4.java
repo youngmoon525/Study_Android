@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,9 @@ public class Fragment4 extends Fragment {
         ViewGroup rootView  = (ViewGroup)
                 inflater.inflate(R.layout.fragment4 , container , false);
         //↑ 디자인과 붙일 컨테이너(layout) xml <->java 연결
+        WebView wvlayout = rootView.findViewById(R.id.wvlayout);
+        wvlayout.loadUrl("http://192.168.0.60/mid/adf.exam");
+
         return rootView;
     }
 }

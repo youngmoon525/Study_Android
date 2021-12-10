@@ -69,14 +69,7 @@ public class Fragment1 extends Fragment {
                 Animation rotateAnim = AnimationUtils.loadAnimation(getContext() , R.anim.rotate );
                 imgv2.startAnimation(rotateAnim);
                 imgv3.startAnimation(rotateAnim);
-                ConnDB conn = new ConnDB();
-                try {
-                    conn.execute().get();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
             }
         });
 
