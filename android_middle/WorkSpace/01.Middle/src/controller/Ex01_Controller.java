@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 
-@WebServlet("*.and")
+@WebServlet("*.andtest")
 public class Ex01_Controller extends HttpServlet {
 // 맵핑뒤에 .and로 끝나면 모든 처리를 여기서 하겟다. ↑
 	@Override
@@ -25,6 +25,7 @@ public class Ex01_Controller extends HttpServlet {
 	//MultipartRequest
 	// MultipartRequest multi = <=req;(req에 있는 내용은 손실이됨)
 	// MultepartRequest를 초기화할때는 파일이 실제로 저장될 경로도 필요함
+	
 	String path = req.getRealPath("/");
 	System.out.println(path);
 	MultipartRequest multi = new MultipartRequest(req, path , 300000);	

@@ -3,6 +3,8 @@ package com.example.project2_clone;
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -16,7 +18,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-
 public class Common {
 
     private static final String TAG = "common";
@@ -43,7 +44,10 @@ public class Common {
         //실제로 url매핑을 접근해서 응답(res)을 준값을 그대로 가지고옴.
         //InputStream형태로 받아옴.
        try{
-        builder.addTextBody("key" , "valueAndroid" ,
+        UserDTO dto = new UserDTO(10,"and_userId" , "and_usermsg");
+        Gson gson = new Gson();
+        String data = gson.toJson(dto);
+        builder.addTextBody("dto" , data ,
                 ContentType.create("Multipart/related" , "UTF-8"));
         httpClient = AndroidHttpClient.newInstance("Android");
         httpPost = new HttpPost(postUrl);
@@ -51,8 +55,8 @@ public class Common {
         InputStream in = httpClient.execute(httpPost).getEntity().getContent();
         if(in != null){
 
-            String data = rtnStr(in);
-            Fragment2.data = data;
+           // String data = rtnStr(in);
+          //  Fragment2.data = data;
             Log.d(TAG, "testConn: succ" + data);
         }else{
             Log.d(TAG, "testConn: fail");
