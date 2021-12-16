@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E8E6E5"
-    tools:context="tab.Frag_GridView">
-
-    <GridView
+    tools:context=".MainFragment">
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gridv"
-        android:numColumns="2"
-        android:listSelector="#75A2CF"
-        android:horizontalSpacing="8dp"
-        android:verticalSpacing="8dp"
-        />
+        android:background="#EAEEF1"
+        android:id="@+id/pager">
+
+
+    </androidx.viewpager.widget.ViewPager>
+
 
 </FrameLayout>
