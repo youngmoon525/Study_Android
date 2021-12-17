@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.container , fragment
         ).commit();      //붙일 레이아웃 , 붙을 view(Fragment) , ctrl + p
 
-        TestConn testConn = new TestConn("test.vw");
+        TestConn testConn = new TestConn("list.vw");
         try {
             testConn.execute().get();
         } catch (ExecutionException e) {

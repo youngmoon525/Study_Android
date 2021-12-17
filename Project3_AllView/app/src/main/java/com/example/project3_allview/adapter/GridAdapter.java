@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.project3_allview.R;
 import com.example.project3_allview.dto.GridDTO;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GridAdapter extends BaseAdapter {
@@ -29,6 +30,9 @@ public class GridAdapter extends BaseAdapter {
     }
     public void addItem(GridDTO dto){
         list.add(dto);
+    }
+    public void addItem(ArrayList<GridDTO> list){
+        this.list = list;
     }
     @Override
     public int getCount(){
@@ -62,7 +66,7 @@ public class GridAdapter extends BaseAdapter {
         //if(list.get(position).getImgresId() == 1)
         viewHolder.tv1.setText(list.get(position).getTitle());
         viewHolder.tv2.setText(list.get(position).getContent());
-        viewHolder.imgv1.setImageResource(list.get(position).getImgresId());
+        //viewHolder.imgv1.setImageResource(list.get(position).getImgresId());
         viewHolder.tv1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

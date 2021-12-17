@@ -10,11 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.project3_allview.Atask.AtakConn;
 import com.example.project3_allview.R;
 import com.example.project3_allview.adapter.GridAdapter;
 import com.example.project3_allview.dto.GridDTO;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class Frag_GridView extends Fragment {
@@ -32,18 +39,19 @@ public class Frag_GridView extends Fragment {
         ArrayList<GridDTO> list = new ArrayList<>();
         GridAdapter adapter = new GridAdapter(getContext(),list);
         gridView = rootView.findViewById(R.id.gridv);
-        adapter.addItem(new GridDTO("title1","content1",R.drawable.img1));
-        adapter.addItem(new GridDTO("title2","content2",R.drawable.img2));
-        adapter.addItem(new GridDTO("title3","content3",R.drawable.img3));
-        adapter.addItem(new GridDTO("title4","content4",R.drawable.img1));
-        adapter.addItem(new GridDTO("title5","content5",R.drawable.img2));
-        adapter.addItem(new GridDTO("title6","content6",R.drawable.img3));
-        adapter.addItem(new GridDTO("title7","content7",R.drawable.img1));
-        adapter.addItem(new GridDTO("title8","content8",R.drawable.img2));
-        adapter.addItem(new GridDTO("title9","content9",R.drawable.img3));
-        adapter.addItem(new GridDTO("title10","conten10",R.drawable.img1));
-        adapter.addItem(new GridDTO("title11","conten11",R.drawable.img2));
-        adapter.addItem(new GridDTO("title12","conten12",R.drawable.img3));
+        AtakConn conn = new AtakConn("list.vw");
+        try {
+            InputStream is = conn.execute().get();
+            Gson gson = new Gson();
+            list = gson.fromJson(new InputStreamReader(is) ,
+                    new TypeToken<List<GridDTO>>(){}.getType());
+            adapter.addItem(list);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         gridView.setAdapter(adapter);
         return rootView;
     }
